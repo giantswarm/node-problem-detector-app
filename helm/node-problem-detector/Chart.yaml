@@ -8,7 +8,7 @@ sources:
 description: A helm chart for running node-problem-detector on a cluster.
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
 type: application
-version: "2.3.11"
+version: "[[ .Version ]]"
 appVersion: v0.8.14
 annotations:
   application.giantswarm.io/team: "phoenix"
