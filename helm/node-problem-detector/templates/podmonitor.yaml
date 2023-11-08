@@ -1,16 +1,18 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: "{{- .Chart.Name | trunc 52 | trimSuffix "-" -}}"
   namespace: "{{ .Release.Namespace }}"
   labels:
     {{- include "labels.common" . | nindent 4 }}
 spec:
-  endpoints:
-    - interval: 60s
-      path: /metrics
-      port: exporter
-      scrapeTimeout: 10s
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "node-problem-detector.name" . }}
+  namespaceSelector:
+    matchNames:
+      - "{{ .Release.Namespace }}"
+  podMetricsEndpoints:
+    - port: "exporter"
+      interval: 60s
+      scrapeTimeout: 10s
