@@ -3,6 +3,8 @@ kind: PolicyException
 metadata:
   name: "{{- .Chart.Name | trunc 52 | trimSuffix "-" -}}-exceptions"
   namespace: "{{ .Release.Namespace }}"
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
 spec:
   exceptions:
     - policyName: disallow-host-path
