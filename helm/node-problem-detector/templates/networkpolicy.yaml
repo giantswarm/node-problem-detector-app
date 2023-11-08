@@ -3,6 +3,8 @@ kind: NetworkPolicy
 metadata:
   name: "{{- .Chart.Name | trunc 52 | trimSuffix "-" -}}"
   namespace: "{{ .Release.Namespace }}"
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
 spec:
   egress:
     - {}

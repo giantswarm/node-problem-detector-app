@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: "node-problem-detector-disk-check"
   namespace: "{{ .Release.Namespace }}"
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
 data:
   full-disk-check.sh: |
     #!/bin/bash

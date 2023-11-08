@@ -3,6 +3,8 @@ kind: PolicyException
 metadata:
   name: "{{- .Chart.Name | trunc 52 | trimSuffix "-" -}}-exceptions"
   namespace: "{{ .Release.Namespace }}"
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
 spec:
