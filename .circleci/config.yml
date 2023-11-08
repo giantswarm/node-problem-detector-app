@@ -12,6 +12,7 @@ workflows:
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
           chart: "node-problem-detector"
+          executor: "app-build-suite"
           filters:
             # Trigger the job also on git tag.
             tags:
