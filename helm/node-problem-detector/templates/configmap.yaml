@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "node-problem-detector-disk-check"
+  namespace: "{{ .Release.Namespace }}"
+data:
+  full-disk-check.sh: |
+    #!/bin/bash
+
+    # Define the exit codes as readonly variables
+    readonly OK=0
+    readonly NONOK=1
+    readonly UNKNOWN=2
+
+    for dir in /host/var/lib/kubelet /host/var/lib/containerd /host/var/log
+    do
+      # Check if the given directory path exists
+      if [ ! -d "$dir" ]; then
+        echo "Warning: Dir $dir was not found."
+        exit $UNKNOWN
+      fi
+
+      # Get the disk where the directory path belongs
+      disk_path=$(df "$dir" --output=target | tail -n1)
+      device=$(df "$dir" --output=source | tail -n1)
+
+      # Get the percentage of used disk space
+      used_space=$(df "$disk_path" --output=pcent | tail -n1|sed 's/%//')
+
+      # Check if the disk is full
+      if [ $used_space -ge 99 ]; then
+        echo "Disk $device is full."
+        exit $NONOK
+      fi
+    done
+
+    echo "No disk is full"
+    exit $OK

@@ -1,0 +1,18 @@
+apiVersion: v2
+name: node-problem-detector
+home: https://github.com/giantswarm/node-problem-detector-app
+sources:
+  - https://github.com/giantswarm/node-problem-detector-app
+  - https://github.com/kubernetes/node-problem-detector
+  - https://kubernetes.io/docs/concepts/architecture/nodes/#condition
+description: A helm chart for running node-problem-detector on a cluster.
+icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
+type: application
+version: "2.3.11"
+appVersion: v0.8.14
+annotations:
+  application.giantswarm.io/team: "phoenix"
+dependencies:
+  - name: node-problem-detector
+    version: "2.3.11"
+    repository: "https://charts.deliveryhero.io/"

@@ -1,0 +1,70 @@
+node-problem-detector:
+  image:
+    repository: docker.io/giantswarm/node-problem-detector
+
+  settings:
+    # Custom monitor definitions to add to Node Problem Detector - to be
+    # mounted at /custom-config. These are in addition to pre-packaged monitor
+    # definitions provided within the default docker image available at /config:
+    # https://github.com/kubernetes/node-problem-detector/tree/master/config
+    # settings.custom_monitor_definitions -- Custom plugin monitor config files
+    custom_monitor_definitions:
+      full-disk-check.json: |
+        {
+          "plugin": "custom",
+          "pluginConfig": {
+              "invoke_interval": "60s",
+              "timeout": "30s",
+              "max_output_length": 80,
+              "concurrency": 1,
+              "enable_message_change_based_condition_update": false
+          },
+          "source": "disk-full-monitor",
+          "metricsReporting": true,
+          "conditions": [
+            {
+              "type": "DiskFull",
+              "reason": "NoDiskIsFull",
+              "message": "No disk is full"
+            }
+          ],
+          "rules": [
+            {
+              "type": "temporary",
+              "reason": "DiskFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "timeout": "30s"
+            },
+            {
+              "type": "permanent",
+              "condition": "DiskFull",
+              "reason": "DiskFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "timeout": "30s"
+            }
+          ]
+        }
+
+    custom_plugin_monitors:
+      - /custom-config/full-disk-check.json
+
+  rbac:
+    create: true
+    pspEnabled: false
+
+  extraVolumes:
+  - name: full-disk-check
+    configMap:
+      name: node-problem-detector-disk-check
+      defaultMode: 0755
+  - name: host
+    hostPath:
+      path: /
+
+  extraVolumeMounts:
+  - name: full-disk-check
+    mountPath: /custom-checks
+    readOnly: true
+  - name: host
+    mountPath: /host
+    readOnly: true
