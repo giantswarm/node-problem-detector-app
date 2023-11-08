@@ -3,7 +3,6 @@ node-problem-detector:
     repository: docker.io/giantswarm/node-problem-detector
 
   labels:
-    app: node-problem-detector
     application.giantswarm.io/team: phoenix
 
   settings:
