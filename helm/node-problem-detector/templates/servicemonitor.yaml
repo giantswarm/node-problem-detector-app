@@ -7,7 +7,7 @@ spec:
   endpoints:
     - interval: 60s
       path: /metrics
-      port: {{ .Values.settings.prometheus_port }}
+      port: {{ index .Values "node-problem-detector" "settings" "prometheus_port" }}
       scrapeTimeout: 10s
   selector:
     matchLabels:
