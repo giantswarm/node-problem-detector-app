@@ -1,0 +1,16 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: "{{- .Chart.Name | trunc 52 | trimSuffix "-" -}}"
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  endpoints:
+    - interval: 60s
+      path: /metrics
+      port: {{ .Values.settings.prometheus_port }}
+      scrapeTimeout: 10s
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "node-problem-detector.name" . }}
+{{- end }}

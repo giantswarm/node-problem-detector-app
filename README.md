@@ -1,4 +1,4 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/node-problem-detector-app/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/node-problem-detector-app/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/node-problem-detector-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/node-problem-detector-app/tree/main)
 
 # node-problem-detector-app
 
