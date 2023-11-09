@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-11-09
+
 ### Changed
 
 - Add node label to metrics.
@@ -19,5 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release featuring upstream version v0.8.14.
 
 
-[Unreleased]: https://github.com/giantswarm/node-problem-detector-app/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/node-problem-detector-app/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/giantswarm/node-problem-detector-app/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/giantswarm/node-problem-detector-app/compare/v0.0.0...v0.1.0
