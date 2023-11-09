@@ -26,9 +26,19 @@ node-problem-detector:
           "metricsReporting": true,
           "conditions": [
             {
-              "type": "DiskFull",
-              "reason": "NoDiskIsFull",
-              "message": "No disk is full"
+              "type": "DiskFullKubelet",
+              "reason": "KubeletDiskIsNotFull",
+              "message": "/var/lib/kubelet is not full"
+            },
+            {
+              "type": "DiskFullContainerd",
+              "reason": "ContainerdDiskIsNotFull",
+              "message": "/var/lib/containerd is not full"
+            },
+            {
+              "type": "DiskFullVarLog",
+              "reason": "VarLogDiskIsNotFull",
+              "message": "/var/log is not full"
             }
           ],
           "rules": [
