@@ -22,27 +22,69 @@ node-problem-detector:
               "concurrency": 1,
               "enable_message_change_based_condition_update": false
           },
-          "source": "disk-full-monitor",
+          "source": "node-problem-detector",
           "metricsReporting": true,
           "conditions": [
             {
-              "type": "DiskFull",
-              "reason": "NoDiskIsFull",
-              "message": "No disk is full"
+              "type": "DiskFullKubelet",
+              "reason": "KubeletDiskIsNotFull",
+              "message": "/var/lib/kubelet is not full"
+            },
+            {
+              "type": "DiskFullContainerd",
+              "reason": "ContainerdDiskIsNotFull",
+              "message": "/var/lib/containerd is not full"
+            },
+            {
+              "type": "DiskFullVarLog",
+              "reason": "VarLogDiskIsNotFull",
+              "message": "/var/log is not full"
             }
           ],
           "rules": [
             {
               "type": "temporary",
-              "reason": "DiskFull",
+              "reason": "KubeletDiskIsFull",
               "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/kubelet"],
               "timeout": "30s"
             },
             {
               "type": "permanent",
-              "condition": "DiskFull",
-              "reason": "DiskFull",
+              "condition": "DiskFullKubelet",
+              "reason": "KubeletDiskIsFull",
               "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/kubelet"],
+              "timeout": "30s"
+            },
+            {
+              "type": "temporary",
+              "reason": "ContainerdDiskIsFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/containerd"],
+              "timeout": "30s"
+            },
+            {
+              "type": "permanent",
+              "condition": "DiskFullContainerd",
+              "reason": "ContainerdDiskIsFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/containerd"],
+              "timeout": "30s"
+            },
+            {
+              "type": "temporary",
+              "reason": "VarLogDiskIsFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/log"],
+              "timeout": "30s"
+            },
+            {
+              "type": "permanent",
+              "condition": "DiskFullVarLog",
+              "reason": "VarLogDiskIsFull",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/log"],
               "timeout": "30s"
             }
           ]
