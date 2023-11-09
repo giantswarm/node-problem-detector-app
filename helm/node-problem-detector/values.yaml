@@ -34,17 +34,49 @@ node-problem-detector:
           "rules": [
             {
               "type": "temporary",
-              "reason": "DiskFull",
+              "reason": "DiskFullKubelet",
               "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/kubelet"]
               "timeout": "30s"
             },
             {
               "type": "permanent",
-              "condition": "DiskFull",
-              "reason": "DiskFull",
+              "condition": "DiskFullKubelet",
+              "reason": "DiskFullKubelet",
               "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/kubelet"]
               "timeout": "30s"
-            }
+            },
+            {
+              "type": "temporary",
+              "reason": "DiskFullContainerd",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/containerd"]
+              "timeout": "30s"
+            },
+            {
+              "type": "permanent",
+              "condition": "DiskFullContainerd",
+              "reason": "DiskFullContainerd",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/lib/containerd"]
+              "timeout": "30s"
+            },
+            {
+              "type": "temporary",
+              "reason": "DiskFullVarLog",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/log"]
+              "timeout": "30s"
+            },
+            {
+              "type": "permanent",
+              "condition": "DiskFullVarLog",
+              "reason": "DiskFullVarLog",
+              "path": "/custom-checks/full-disk-check.sh",
+              "args": ["/var/log"]
+              "timeout": "30s"
+            },
           ]
         }
 

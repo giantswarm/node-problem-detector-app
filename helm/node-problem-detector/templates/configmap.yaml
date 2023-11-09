@@ -14,27 +14,35 @@ data:
     readonly NONOK=1
     readonly UNKNOWN=2
 
-    for dir in /host/var/lib/kubelet /host/var/lib/containerd /host/var/log
-    do
-      # Check if the given directory path exists
-      if [ ! -d "$dir" ]; then
-        echo "Warning: Dir $dir was not found."
-        exit $UNKNOWN
-      fi
+    dir="$1"
 
-      # Get the disk where the directory path belongs
-      disk_path=$(df "$dir" --output=target | tail -n1)
-      device=$(df "$dir" --output=source | tail -n1)
+    if [ -z $dir ]
+    then
+      echo "Error: target dir was not passed as an argument."
+      exit $UNKNOWN
+    fi
 
-      # Get the percentage of used disk space
-      used_space=$(df "$disk_path" --output=pcent | tail -n1|sed 's/%//')
+    # Argument is an absolute path, but we mount the host root on /host so we need to adjust it.
+    localdir="/host${dir}"
 
-      # Check if the disk is full
-      if [ $used_space -ge 99 ]; then
-        echo "Disk $device is full."
-        exit $NONOK
-      fi
-    done
+    # Check if the given directory path exists
+    if [ ! -d "$localdir" ]; then
+      echo "Warning: Dir $dir was not found."
+      exit $UNKNOWN
+    fi
 
-    echo "No disk is full"
+    # Get the disk where the directory path belongs
+    disk_path=$(df "$localdir" --output=target | tail -n1)
+    device=$(df "localdir" --output=source | tail -n1)
+
+    # Get the percentage of used disk space
+    used_space=$(df "$disk_path" --output=pcent | tail -n1|sed 's/%//')
+
+    # Check if the disk is full
+    if [ $used_space -ge 99 ]; then
+      echo "Disk $device (mount point $dir) is full."
+      exit $NONOK
+    fi
+
+    echo "Disk $device (mount point $dir) is not full"
     exit $OK
