@@ -33,7 +33,7 @@ data:
 
     # Get the disk where the directory path belongs
     disk_path=$(df "$localdir" --output=target | tail -n1)
-    device=$(df "localdir" --output=source | tail -n1)
+    device=$(df "$localdir" --output=source | tail -n1)
 
     # Get the percentage of used disk space
     used_space=$(df "$disk_path" --output=pcent | tail -n1|sed 's/%//')
