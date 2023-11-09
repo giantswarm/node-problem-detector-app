@@ -22,7 +22,7 @@ node-problem-detector:
               "concurrency": 1,
               "enable_message_change_based_condition_update": false
           },
-          "source": "disk-full-monitor",
+          "source": "node-problem-detector",
           "metricsReporting": true,
           "conditions": [
             {
