@@ -101,6 +101,9 @@ node-problem-detector:
     requests:
       cpu: 100m
       memory: 100Mi
+    limits:
+      cpu: 100m
+      memory: 100Mi
 
   extraVolumes:
   - name: full-disk-check
