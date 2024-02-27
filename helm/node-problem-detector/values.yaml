@@ -97,6 +97,11 @@ node-problem-detector:
     create: true
     pspEnabled: false
 
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
   extraVolumes:
   - name: full-disk-check
     configMap:
