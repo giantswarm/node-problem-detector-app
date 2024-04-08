@@ -8,8 +8,13 @@ metadata:
 spec:
   egress:
     - {}
+  ingress:
+    - ports:
+        - port: 20257
+          protocol: TCP
   podSelector:
     matchLabels:
       app.kubernetes.io/name: {{ include "node-problem-detector.name" . }}
   policyTypes:
     - Egress
+    - Ingress
