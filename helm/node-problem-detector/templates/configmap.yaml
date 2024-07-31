@@ -39,7 +39,7 @@ data:
     used_space=$(df "$disk_path" --output=pcent | tail -n1|sed 's/%//')
 
     # Check if the disk is full
-    if [ $used_space -ge { node-problem-detector.used_space_threshold }} ]; then
+    if [ $used_space -ge { node-problem-detector.usedSpaceThreshold }} ]; then
       echo "Disk $device (mount point $dir) is full."
       exit $NONOK
     fi
