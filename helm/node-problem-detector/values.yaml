@@ -5,7 +5,7 @@ node-problem-detector:
   labels:
     application.giantswarm.io/team: phoenix
 
-  used_space_threshold: 99
+  usedSpaceThreshold: 99
 
   settings:
     # Custom monitor definitions to add to Node Problem Detector - to be
