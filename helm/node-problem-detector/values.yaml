@@ -5,6 +5,8 @@ node-problem-detector:
   labels:
     application.giantswarm.io/team: phoenix
 
+  usedSpaceThreshold: 99
+
   settings:
     # Custom monitor definitions to add to Node Problem Detector - to be
     # mounted at /custom-config. These are in addition to pre-packaged monitor
