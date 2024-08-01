@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Make disk space termination threshold configurable with `used_space_threshold` value
+- Make disk space termination threshold configurable with `usedSpaceThreshold` value
 
 ## [0.3.1] - 2024-04-08
 
