@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade node-problem-detector base chart and app to v0.8.20
+
 ## [0.4.0] - 2024-08-01
 
 ### Changed

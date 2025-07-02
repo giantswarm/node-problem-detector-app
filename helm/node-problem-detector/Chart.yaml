@@ -9,10 +9,10 @@ description: A helm chart for running node-problem-detector on a cluster.
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
 type: application
 version: "0.4.0"
-appVersion: v0.8.14
+appVersion: v0.8.20
 annotations:
   application.giantswarm.io/team: "phoenix"
 dependencies:
   - name: node-problem-detector
-    version: "2.3.11"
-    repository: "https://charts.deliveryhero.io/"
+    version: "2.3.21"
+    repository: "oci://ghcr.io/deliveryhero/helm-charts"

@@ -1,6 +1,6 @@
 dependencies:
 - name: node-problem-detector
-  repository: https://charts.deliveryhero.io/
-  version: 2.3.11
-digest: sha256:5769877cf29ff317cd399eda21a7b9ef42f46abe98e571eb1cf8e56488b2ec5b
-generated: "2023-10-04T15:09:26.191197968+02:00"
+  repository: oci://ghcr.io/deliveryhero/helm-charts
+  version: 2.3.21
+digest: sha256:d1013473b747608352f39c67a24e39f7e109192f3df3b2873f27aa4043d5d6b2
+generated: "2025-07-02T12:18:27.694221+02:00"
