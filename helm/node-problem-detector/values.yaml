@@ -1,6 +1,6 @@
 node-problem-detector:
   image:
-    repository: docker.io/giantswarm/node-problem-detector
+    repository: gsoci.azurecr.io/giantswarm/node-problem-detector
 
   labels:
     application.giantswarm.io/team: phoenix
