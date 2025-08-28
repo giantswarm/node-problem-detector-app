@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update PolicyException apiVersion to v2.
+- Load container image from gsoci.azurecr.io by default.
 
 ## [0.5.0] - 2025-07-17
 
