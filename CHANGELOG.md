@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Build: Switch to pushing to `default` instead of `playground` catalog as this app will be fully supported in production
+
 ## [0.5.1] - 2025-08-28
 
 ### Changed
